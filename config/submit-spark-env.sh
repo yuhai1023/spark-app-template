@@ -13,6 +13,8 @@ export SPARK_MASTER=
 # HADOOP CONF DIR For Yarn & Hdfs use
 # export HADOOP_CONF_DIR=
 
+# Modify this for change default driver port 4040
+# export SPARK_DRIVER_PORT=4040
 
 # Whether to launch the driver program locally ("client") or
 # on one of the worker machines inside the cluster ("cluster") (Default: client).

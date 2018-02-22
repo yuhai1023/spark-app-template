@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-if [ $# -ne 1 ]; then
+if [ $# -lt 1 ]; then
     echo "Usage: $0 class.name"
     exit 0
 fi
@@ -62,6 +62,11 @@ if [ -n "$SPARK_FRAME_SIZE" ]; then
     SUBMIT_OPTS="$SUBMIT_OPTS --conf spark.akka.frameSize=$SPARK_FRAME_SIZE"
 fi
 
+if [ -n "$SPARK_DRIVER_PORT" ]; then
+    SUBMIT_OPTS="$SUBMIT_OPTS --conf spark.ui.port=$SPARK_DRIVER_PORT"
+fi
+
+
 for i in ${this}/deps/*.jar; do
     JARS="$JARS,$i"
 done
@@ -84,5 +89,8 @@ else
     SPARK_SUBMIT=${SPARK_HOME}/bin/spark-submit
 fi
 
-time ${SPARK_SUBMIT} ${SUBMIT_OPTS} --class $@ ${JAR}
+class=$1
+shift
+
+time ${SPARK_SUBMIT} ${SUBMIT_OPTS} --class $class ${JAR} $@
 
