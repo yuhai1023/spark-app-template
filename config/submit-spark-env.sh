@@ -46,6 +46,14 @@ export SPARK_MASTER=
 #
 #
 
+# YARN only:
+# ===============================
+#
+# Number of executors to launch (Default: 2).
+# export SPARK_NUMBER_EXECUTORS=2
+#
+#
+
 # Spark driver max result size
 # export SPARK_DRIVER_MAX_RESULT=4G
 

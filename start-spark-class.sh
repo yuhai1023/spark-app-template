@@ -49,6 +49,10 @@ if [ -n "$SPARK_TOTAL_EXECUTOR_CORES" ]; then
     SUBMIT_OPTS="$SUBMIT_OPTS --total-executor-cores $SPARK_TOTAL_EXECUTOR_CORES"
 fi
 
+if [ -n "$SPARK_NUMBER_EXECUTORS"  ]; then
+        SUBMIT_OPTS="$SUBMIT_OPTS --num-executors $SPARK_NUMBER_EXECUTORS"
+    fi
+
 # spark-submit environment properties
 if [ -n "$SPARK_MESOS_COARSE" ]; then
     SUBMIT_OPTS="$SUBMIT_OPTS --conf spark.mesos.coarse=$SPARK_MESOS_COARSE"
