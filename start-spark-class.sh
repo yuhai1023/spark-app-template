@@ -50,8 +50,8 @@ if [ -n "$SPARK_TOTAL_EXECUTOR_CORES" ]; then
 fi
 
 if [ -n "$SPARK_NUMBER_EXECUTORS"  ]; then
-        SUBMIT_OPTS="$SUBMIT_OPTS --num-executors $SPARK_NUMBER_EXECUTORS"
-    fi
+    SUBMIT_OPTS="$SUBMIT_OPTS --num-executors $SPARK_NUMBER_EXECUTORS"
+fi
 
 # spark-submit environment properties
 if [ -n "$SPARK_MESOS_COARSE" ]; then
