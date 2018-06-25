@@ -7,24 +7,35 @@
 # SPARK_HOME
 export SPARK_HOME=
 
-# spark://host:port, mesos://host:port, yarn, or local.
-export SPARK_MASTER=
+# spark://host:port, mesos://host:port, yarn, or local, default yarn if not specified
+export SPARK_MASTER=${SPARK_MASTER:-yarn}
 
 # HADOOP CONF DIR For Yarn & Hdfs use
 # export HADOOP_CONF_DIR=
 
 # Modify this for change default driver port 4040
-# export SPARK_DRIVER_PORT=4040
+export SPARK_DRIVER_PORT=${SPARK_DRIVER_PORT:4040}
 
 # Whether to launch the driver program locally ("client") or
 # on one of the worker machines inside the cluster ("cluster") (Default: client).
 # export SPARK_DEPLOY_MODE=client
 
 # Memory for driver (e.g. 1000M, 2G) (Default: 1024M).
-# export SPARK_DRIVER_MEMORY=4G
+export SPARK_DRIVER_MEMORY=${SPARK_DRIVER_MEMORY:-1G}
 
 # Memory per executor (e.g. 1000M, 2G) (Default: 1G).
-# export SPARK_EXECUTOR_MEMORY=4G
+export SPARK_EXECUTOR_MEMORY=${SPARK_EXECUTOR_MEMORY:-1G}
+
+
+# SPARK JAVA OPTS
+# ===============
+# Driver or Executor's Java options.
+# Example: -XX:+UseG1GC
+#
+#export SPARK_EXECUTOR_JAVA_OPTS="-XX:+UseG1GC"
+#export SPARK_DRIVER_JAVA_OPTS="-XX:+UseG1GC -verbose:gc -XX:+PrintGCDetails -XX:+PrintGCTimeStamps"
+#
+
 
 # Spark standalone and YARN only:
 # ===============================
@@ -50,7 +61,7 @@ export SPARK_MASTER=
 # ===============================
 #
 # Number of executors to launch (Default: 2).
-# export SPARK_NUMBER_EXECUTORS=2
+export SPARK_NUMBER_EXECUTORS=${SPARK_NUMBER_EXECUTORS:2}
 #
 #
 

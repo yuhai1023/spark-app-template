@@ -53,6 +53,15 @@ if [ -n "$SPARK_NUMBER_EXECUTORS"  ]; then
     SUBMIT_OPTS="$SUBMIT_OPTS --num-executors $SPARK_NUMBER_EXECUTORS"
 fi
 
+# java option
+if [ -n "$SPARK_EXECUTOR_JAVA_OPTS" ]; then
+    SUBMIT_OPTS="$SUBMIT_OPTS --conf \"spark.executor.extraJavaOptions=$SPARK_EXECUTOR_JAVA_OPTS\""
+fi
+
+if [ -n "$SPARK_DRIVER_JAVA_OPTS" ]; then
+    SUBMIT_OPTS="$SUBMIT_OPTS --conf \"spark.driver.extraJavaOptions=$SPARK_DRIVER_JAVA_OPTS\""
+fi
+
 # spark-submit environment properties
 if [ -n "$SPARK_MESOS_COARSE" ]; then
     SUBMIT_OPTS="$SUBMIT_OPTS --conf spark.mesos.coarse=$SPARK_MESOS_COARSE"
@@ -96,5 +105,5 @@ fi
 class=$1
 shift
 
-time ${SPARK_SUBMIT} ${SUBMIT_OPTS} --class $class ${JAR} $@
-
+exe_cmd="time ${SPARK_SUBMIT} ${SUBMIT_OPTS} --class $class ${JAR} $@"
+bash -c "$exe_cmd"
